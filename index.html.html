@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>۱۹ سال مسیر روشن‌تر ارتباط | ارتباط گستران</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;800;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg1:#1a2d7c; --bg2:#142a78; --bg3:#0b1650;
+    --map:#05084a; --line:rgba(180,200,255,.35); --white:#fff;
+    --stone:#d9d6cf; --stone-d:#8d8b86;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    font-family:"Vazirmatn",Tahoma,sans-serif;
+    background:#0b1650; color:var(--white);
+    display:grid; place-items:center; overflow-x:hidden;
+  }
+
+  /* ---------- کارت ---------- */
+  .card{
+    position:relative; isolation:isolate; overflow:hidden;
+    width:100%; min-height:100svh;
+    padding:clamp(20px,4vw,56px);
+    padding-top:max(clamp(20px,4vw,56px),env(safe-area-inset-top));
+    padding-bottom:max(clamp(20px,4vw,56px),env(safe-area-inset-bottom));
+    display:grid;
+    grid-template-columns:1.15fr 1fr;          /* RTL: ستون اول سمت راست = متن */
+    grid-template-areas:"text art" "logo art";
+    grid-template-rows:1fr auto;
+    background:
+      radial-gradient(900px 600px at 0% 0%, rgba(120,140,210,.55), transparent 60%),
+      linear-gradient(135deg,var(--bg1),var(--bg2) 55%,var(--bg3));
+  }
+  @media (min-width:1100px){
+    .card{max-width:1400px;min-height:0;aspect-ratio:1748/1240;border-radius:20px;margin:24px;width:calc(100% - 48px)}
+  }
+
+  /* ---------- نقشه و شبکه ---------- */
+  .world{position:absolute;inset:0;z-index:-1;width:100%;height:100%;opacity:.95}
+  .world .land{fill:var(--map);animation:drift 18s ease-in-out infinite alternate}
+  .world .net line{stroke:var(--line);stroke-width:1;stroke-dasharray:4 6;animation:flow 6s linear infinite}
+  .world .net circle{fill:#bcd0ff;animation:pulse 3s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+  .world .net circle:nth-child(3n){animation-delay:-1s}
+  .world .net circle:nth-child(3n+1){animation-delay:-2s}
+  @keyframes drift{from{transform:translateX(-6px)}to{transform:translateX(6px)}}
+  @keyframes flow{to{stroke-dashoffset:-100}}
+  @keyframes pulse{0%,100%{opacity:.35;transform:scale(1)}50%{opacity:1;transform:scale(1.9)}}
+
+  /* ---------- متن ---------- */
+  .text{grid-area:text;align-self:center;padding-inline-end:clamp(0px,3vw,48px);max-width:30em;justify-self:end}
+  .years{font-size:clamp(3rem,8vw,6.2rem);font-weight:900;line-height:1.1;
+    animation:rise .9s cubic-bezier(.2,.7,.2,1) both}
+  .title{font-size:clamp(1.6rem,3.8vw,3rem);font-weight:800;line-height:1.5;margin-top:.4em;
+    animation:rise .9s .15s cubic-bezier(.2,.7,.2,1) both}
+  .desc{font-size:clamp(1rem,1.9vw,1.55rem);font-weight:500;line-height:2.1;margin-top:1.2em;
+    animation:rise .9s .3s cubic-bezier(.2,.7,.2,1) both}
+  @keyframes rise{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+
+  /* ---------- عدد ۱۹ ---------- */
+  .art{grid-area:art;display:grid;place-items:center;position:relative}
+  .badge{width:min(100%,640px);filter:drop-shadow(0 0 30px rgba(190,210,255,.55));
+    animation:float 5s ease-in-out infinite}
+  .badge text{font-family:"Vazirmatn",Tahoma,sans-serif;font-weight:900}
+  .crack{stroke:#2d4fb0;stroke-width:3;fill:none;stroke-linecap:round;stroke-dasharray:400;
+    stroke-dashoffset:400;animation:draw 3s .6s ease forwards, glowline 3s 3.6s ease-in-out infinite}
+  @keyframes draw{to{stroke-dashoffset:0}}
+  @keyframes glowline{50%{stroke:#7fa4ff}}
+  @keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-14px) rotate(1deg)}}
+  .shine{position:absolute;inset:auto 0 26%;height:2px;
+    background:linear-gradient(90deg,transparent,rgba(255,255,255,.8),transparent);
+    animation:sweep 4s ease-in-out infinite}
+  @keyframes sweep{0%,100%{opacity:.15;transform:scaleX(.5)}50%{opacity:.9;transform:scaleX(1)}}
+
+  /* ---------- لوگو ---------- */
+  .logo{grid-area:logo;align-self:end;justify-self:start;display:flex;align-items:center;gap:14px;
+    direction:ltr;animation:rise .9s .5s cubic-bezier(.2,.7,.2,1) both}
+  /* اگر فایل لوگوی خودتان را دارید، به‌جای این بلوک یک <img src="logo.png"> بگذارید */
+  .logo svg{width:clamp(56px,9vw,100px);height:auto;animation:spin 14s linear infinite;transform-origin:center}
+  @keyframes spin{50%{transform:rotateY(180deg)}100%{transform:rotateY(360deg)}}
+  .logo-text{direction:rtl;text-align:right;line-height:1.35}
+  .logo-text b{display:block;font-size:clamp(.9rem,1.8vw,1.3rem);font-weight:800}
+  .logo-text span{display:block;font-size:clamp(.65rem,1.1vw,.8rem);font-weight:500;opacity:.9}
+  .logo-text small{display:block;direction:ltr;text-align:left;font-size:clamp(.5rem,.9vw,.65rem);letter-spacing:.28em;opacity:.8}
+.logo img{
+  width:clamp(160px,24vw,330px);
+  height:auto;
+  display:block;
+}
+  /* ---------- موبایل ---------- */
+  @media (max-width:780px){
+    .card{
+      grid-template-columns:1fr;
+      grid-template-areas:"art" "text" "logo";
+      grid-template-rows:auto 1fr auto;
+      gap:8px;
+    }
+    .art{margin-top:-8px}
+    .badge{width:min(88%,360px)}
+    .text{justify-self:stretch;padding:0;text-align:right}
+    .years{text-align:center}
+    .logo{justify-self:center;margin-top:12px}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important}
+    .crack{stroke-dashoffset:0}
+  }
+</style>
+</head>
+<body>
+
+<main class="card">
+
+  <!-- نقشه جهان ساده‌شده + شبکه ارتباطی -->
+  <svg class="world" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g class="land">
+      <path d="M40 150 L150 110 L250 130 L300 200 L260 270 L200 300 L150 270 L90 220Z"/>   <!-- آمریکای شمالی -->
+      <path d="M215 320 L290 330 L330 400 L300 500 L260 580 L235 480 L210 390Z"/>          <!-- آمریکای جنوبی -->
+      <path d="M520 110 L700 70 L880 100 L930 190 L880 260 L800 290 L740 340 L700 280 L610 270 L560 200 L500 180Z"/> <!-- اوراسیا -->
+      <path d="M520 290 L620 290 L650 380 L610 480 L560 470 L530 380Z"/>                    <!-- آفریقا -->
+      <path d="M790 420 L890 410 L930 470 L880 530 L800 520Z"/>                              <!-- استرالیا -->
+    </g>
+    <g class="net">
+      <line x1="120" y1="140" x2="220" y2="220"/><line x1="220" y1="220" x2="270" y2="140"/>
+      <line x1="220" y1="220" x2="260" y2="350"/><line x1="270" y1="140" x2="420" y2="90"/>
+      <line x1="420" y1="90" x2="560" y2="150"/><line x1="560" y1="150" x2="680" y2="130"/>
+      <line x1="680" y1="130" x2="790" y2="200"/><line x1="790" y1="200" x2="860" y2="140"/>
+      <line x1="560" y1="150" x2="590" y2="330"/><line x1="590" y1="330" x2="640" y2="420"/>
+      <line x1="790" y1="200" x2="840" y2="450"/><line x1="680" y1="130" x2="700" y2="270"/>
+      <circle cx="120" cy="140" r="4"/><circle cx="220" cy="220" r="4"/><circle cx="270" cy="140" r="4"/>
+      <circle cx="260" cy="350" r="4"/><circle cx="420" cy="90" r="4"/><circle cx="560" cy="150" r="4"/>
+      <circle cx="680" cy="130" r="4"/><circle cx="790" cy="200" r="4"/><circle cx="860" cy="140" r="4"/>
+      <circle cx="590" cy="330" r="4"/><circle cx="640" cy="420" r="4"/><circle cx="840" cy="450" r="4"/>
+      <circle cx="700" cy="270" r="4"/>
+    </g>
+  </svg>
+
+  <section class="text">
+    <h1 class="years">۱۹ سال</h1>
+    <h2 class="title">مسیر روشن تر ارتباط</h2>
+    <p class="desc">۱۹ سال تجربه ، نوآوری و تعهد در مسیر ساختن زیر ساخت های امن تر ،هوشمند تر و متصل تر برای ایران.</p>
+  </section>
+
+  <section class="art" aria-label="۱۹ سال">
+    <!-- اگر تصویر سنگی ۱۹ را به‌صورت PNG شفاف دارید، کل این <svg> را با <img class="badge" src="19.png" alt="۱۹ سال"> عوض کنید -->
+   <img class="badge" src="2.png" alt="۱۹ سال">
+      <defs>
+        <linearGradient id="stone" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0" stop-color="#f4f2ec"/><stop offset=".5" stop-color="#cfccc4"/><stop offset="1" stop-color="#8f8d88"/>
+        </linearGradient>
+        <linearGradient id="edge" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fff"/><stop offset="1" stop-color="#6d6c68"/>
+        </linearGradient>
+      </defs>
+      <text x="300" y="380" text-anchor="middle" font-size="400" fill="url(#stone)" stroke="url(#edge)" stroke-width="6" direction="ltr">۱۹</text>
+      <path class="crack" d="M150 200 L190 230 L180 280 L215 320"/>
+      <path class="crack" d="M330 150 L370 200 L350 250 L400 290"/>
+      <path class="crack" d="M420 330 L460 310 L490 350"/>
+    </svg>
+    <span class="shine"></span>
+  </section>
+
+ <footer class="logo">
+  <img src="3.png" alt="مهندسین مشاور ارتباط گستران">
+</footer>
+
+</main>
+
+</body>
+</html>
